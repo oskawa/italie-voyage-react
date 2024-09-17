@@ -7,20 +7,33 @@ import { Controls } from "./../components/controls";
 import { LocationMarkers } from "./../components/locations";
 import { InfoBox } from "./../components/location_popup";
 import { useRef, useEffect, useState } from "react";
+import styles from "./Map.module.scss";
 
 export default function Scene() {
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const [loading, setLoading] = useState(true); // Add a loading state
 
   const handleLocationClick = (location) => {
     setSelectedLocation(location);
-    console.log(selectedLocation)
+    console.log(selectedLocation);
   };
 
   const handleClosePopup = () => {
     setSelectedLocation(null);
   };
+
+  const handleLocationsLoaded = () => {
+    setLoading(false); // Hide the loading screen once data is fetched
+  };
+
   return (
     <>
+      {loading && (
+        <div id={styles.loading}>
+          <img id={styles.img} src="" alt="" />
+          <p id={styles.text}>Chargement des destinations...</p>
+        </div>
+      )}
       <Canvas style={{ height: "100vh" }}>
         <PerspectiveCamera
           makeDefault
@@ -33,14 +46,14 @@ export default function Scene() {
         <CustomPointLight />
         <CustomPlane />;
         <Controls />
-        <LocationMarkers onClickLocation={handleLocationClick} />
+        <LocationMarkers
+          onClickLocation={handleLocationClick}
+          onLoaded={handleLocationsLoaded}
+        />
       </Canvas>
       {/* Render InfoBox if a location is selected */}
       {selectedLocation && (
-        <InfoBox
-          location={selectedLocation}
-          onClose={handleClosePopup}
-        />
+        <InfoBox location={selectedLocation} onClose={handleClosePopup} />
       )}
     </>
   );

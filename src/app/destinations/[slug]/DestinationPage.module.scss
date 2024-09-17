@@ -58,3 +58,12 @@
 #galery{
     background-color: #1a1717;
 }
+
+@media screen and (max-width:768px) {
+    #hero{
+        #title{
+            font-size: 50px;
+        }
+    }
+    
+}

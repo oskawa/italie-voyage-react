@@ -1,16 +1,18 @@
 #explication {
     background-color: #1a1717;
     padding: 4.75rem 0;
-    h2 {
+    #title {
         font-size: 30px;
         color: #ffffff;
+        font-family: "Permanent Marker", cursive;
     }
     p {
         font-size: 15px;
         text-align: justify;
         color: #ffffff;
+        line-height: 2;
     }
-    .test {
+    #imageContainer {
         position: relative;
         &:after {
             content: "";
@@ -19,8 +21,26 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: url("/img/mask.svg");
+            background-image: url("/home/mask.svg");
             background-size: cover;
+        }
+        #image{
+            max-height: 85vh;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+    
+}
+
+
+@media screen and (max-width:768px) {
+    #explication {
+       
+        #imageContainer {            
+            #image{
+                max-height: 50vh;
+            }
         }
     }
 }

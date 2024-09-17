@@ -1,7 +1,6 @@
 #hero {
     height: 100vh;
     position: relative;
-    background-image: url("/img/hero.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -55,4 +54,27 @@
             }
         }
     }
+}
+
+#btnStroke{
+    display: block;
+    padding: 10px 15px;
+    color: white;
+    border: 1px solid white;
+    text-decoration: none;
+    width: fit-content;
+    margin: auto;
+    transition: all 400ms;
+    &:hover{
+        background-color: white;
+        color: black;
+    }
+}
+
+@media screen and (max-width:768px) {
+        #hero{
+            #title{
+                font-size: 50px;
+            }
+        }
 }

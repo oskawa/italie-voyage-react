@@ -4,14 +4,20 @@ import http from "../../app/axios/http";
 import { Html } from "@react-three/drei";
 import { InfoBox } from "./../components/location_popup";
 
-export function LocationMarkers({ onClickLocation }) {
+export function LocationMarkers({ onClickLocation, onLoaded }) {
   const [locations, setLocations] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
+
   async function getLocations() {
     try {
       const response = await http.get("list-travel");
       setLocations(response.data);
       console.log(response.data);
-    } catch (error) {}
+    } catch (error) {
+    } finally {
+      setLoading(false); // Set loading to false after fetching
+      if (onLoaded) onLoaded(); // Call the onLoaded callback
+    }
   }
 
   useEffect(() => {

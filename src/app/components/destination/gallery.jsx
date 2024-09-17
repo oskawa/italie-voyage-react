@@ -19,7 +19,7 @@ const Gallery = ({ items }) => {
               <img
                 key={idx}
                 src={item}
-                style={{ width: "100%", height: "auto" }}
+                style={{ width: "100%", height: "auto", borderRadius:"20px" }}
               />
             )}
           />
