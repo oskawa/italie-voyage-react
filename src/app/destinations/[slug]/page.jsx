@@ -5,11 +5,11 @@ import Gallery from "./../../components/destination/gallery";
 import { Container, Row, Col } from "react-bootstrap";
 
 export async function generateStaticParams() {
-  const response = await http.get("list-travel/slugs");
-  const slugs = response.data;
+  const response = await http.get("list-travel");
+  const locations = response.data;
 
-  return slugs.map(slug => ({
-    slug: slug, // Ensure this matches your params
+  return locations.map(location => ({
+    slug: location.slug, // Ensure this matches your params
   }));
 }
 

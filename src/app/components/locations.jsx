@@ -22,7 +22,7 @@ export function LocationMarkers({ onClickLocation }) {
       <>
         {locations.map((location) => (
           <Html
-            key={location.ville}
+            key={location.slug}
             position={[location.coordonnees_x, location.coordonnees_y, 0]}
           >
             <div
