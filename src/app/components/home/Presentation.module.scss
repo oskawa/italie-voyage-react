@@ -1,0 +1,26 @@
+#explication {
+    background-color: #1a1717;
+    padding: 4.75rem 0;
+    h2 {
+        font-size: 30px;
+        color: #ffffff;
+    }
+    p {
+        font-size: 15px;
+        text-align: justify;
+        color: #ffffff;
+    }
+    .test {
+        position: relative;
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("/img/mask.svg");
+            background-size: cover;
+        }
+    }
+}
