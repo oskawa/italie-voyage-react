@@ -4,6 +4,49 @@ import styles from "./DestinationPage.module.scss"; // Import the CSS Module
 import Gallery from "./../../components/destination/gallery";
 import { Container, Row, Col } from "react-bootstrap";
 
+// Fetch available slugs for the destinations
+export async function getStaticPaths() {
+  try {
+    const response = await http.get(`list-travel/slugs`);
+    const slugs = response.data;
+
+    const paths = slugs.map((slug) => ({
+      params: { slug },
+    }));
+
+    return {
+      paths,
+      fallback: "blocking", // Will dynamically render missing pages
+    };
+  } catch (error) {
+    console.error("Error fetching slugs:", error);
+    return { paths: [], fallback: "blocking" };
+  }
+}
+
+// Fetch data for a specific destination page by slug
+export async function getStaticProps({ params }) {
+  const { slug } = params;
+
+  try {
+    const response = await http.get(`list-travel/${slug}`);
+    const location = response.data;
+
+    // If the location is not found, return 404
+    if (!location) {
+      return { notFound: true };
+    }
+
+    return {
+      props: { location }, // Passed to the page component
+      revalidate: 10, // Optional, if using Incremental Static Regeneration (ISR)
+    };
+  } catch (error) {
+    console.error("Error fetching location:", error);
+    return { notFound: true };
+  }
+}
+
 // Fetching function (replace with your actual data fetching logic)
 async function getLocationBySlug(slug) {
   try {
