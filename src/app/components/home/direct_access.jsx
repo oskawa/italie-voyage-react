@@ -1,3 +1,4 @@
+'use client'
 import styles from "./Direct.module.scss"; // Import the CSS Module
 import Link from "next/link";
 import http from "../../axios/http";
