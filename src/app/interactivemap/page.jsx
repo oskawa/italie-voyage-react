@@ -30,7 +30,7 @@ export default function Scene() {
     <>
       {loading && (
         <div id={styles.loading}>
-          <img id={styles.img} src="" alt="" />
+          <img id={styles.img} alt="" />
           <p id={styles.text}>Chargement des destinations...</p>
         </div>
       )}
